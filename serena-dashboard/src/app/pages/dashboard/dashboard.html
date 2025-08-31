@@ -1,0 +1,32 @@
+<div class="dashboard-container">
+  <header>
+    <div *ngIf="userProfile">
+      <h1>Bem-vindo, {{ userProfile.name }}!</h1>
+      <p>{{ userProfile.email }}</p>
+    </div>
+    <button (click)="logout()" class="logout-button">Sair</button>
+  </header>
+
+  <main>
+    <h2>Seu Histórico</h2>
+
+    <div *ngIf="userHistory.length === 0" class="empty-state">
+      <p>Nenhum registro de histórico encontrado.</p>
+    </div>
+
+    <table *ngIf="userHistory.length > 0" class="history-table">
+      <thead>
+        <tr>
+          <th>Data e Hora</th>
+          <th>Evento</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let item of userHistory">
+          <td>{{ item.eventTimestamp | date:'dd/MM/yyyy HH:mm' }}</td>
+          <td>{{ item.eventDescription }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </main>
+</div>

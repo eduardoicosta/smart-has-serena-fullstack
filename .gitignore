@@ -1,0 +1,45 @@
+# Arquivos de Log e Cache do Sistema
+*.log
+Thumbs.db
+.DS_Store
+
+# Dependências do Node (para Angular e React Native)
+# Esta é a regra mais importante! Ignora as pastas de 3GB e 200MB.
+node_modules/
+npm-debug.log
+yarn-error.log
+
+# Arquivos de Build e Configurações de IDE
+.idea/
+.vscode/
+*.iml
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+
+# Back-end: Spring Boot / Maven
+# Ignora a pasta de ~60MB com os arquivos compilados.
+/serena-api/target/
+/serena-api/.mvn/
+/serena-api/mvnw
+/serena-api/mvnw.cmd
+/serena-api/HELP.md
+
+# Front-end: React Native
+# Ignora a pasta de build do Android de ~1.45GB.
+/smart-has-serena/android/build/
+/smart-has-serena/android/app/build/
+/smart-has-serena/android/.gradle/
+/smart-has-serena/android/local.properties
+/smart-has-serena/.expo/
+/smart-has-serena/web-build/
+
+# Front-end: Angular
+/serena-dashboard/.angular/
+/serena-dashboard/dist/
+/serena-dashboard/coverage/
+
+# Arquivos de ambiente (geralmente contêm senhas ou chaves)
+.env

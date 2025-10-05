@@ -13,10 +13,20 @@ import java.util.Collections;
 @Table(name = "users")
 @Getter
 @Setter
+@NamedStoredProcedureQuery(
+    name = "User.generateSummary",
+    procedureName = "SP_GENERATE_USER_SUMMARY",
+    parameters = {
+        @StoredProcedureParameter(mode = ParameterMode.IN, name = "p_user_id", type = Long.class),
+        @StoredProcedureParameter(mode = ParameterMode.OUT, name = "p_total_events", type = Integer.class),
+        @StoredProcedureParameter(mode = ParameterMode.OUT, name = "p_last_event_info", type = String.class)
+    }
+)
 public class User implements UserDetails {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "users_seq_gen")
+    @SequenceGenerator(name = "users_seq_gen", sequenceName = "users_seq", allocationSize = 1)
     private Long id;
 
     @Column(nullable = false)

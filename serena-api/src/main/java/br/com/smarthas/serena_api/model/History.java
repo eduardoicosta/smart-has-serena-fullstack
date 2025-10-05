@@ -13,13 +13,14 @@ import java.time.LocalDateTime;
 public class History {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "history_records_seq_gen")
+    @SequenceGenerator(name = "history_records_seq_gen", sequenceName = "history_records_seq", allocationSize = 1)
     private Long id;
 
-    @Column(nullable = false)
+    @Column(name = "event_description", nullable = false)
     private String eventDescription;
 
-    @Column(nullable = false)
+    @Column(name = "event_timestamp", nullable = false)
     private LocalDateTime eventTimestamp;
 
     @ManyToOne(fetch = FetchType.LAZY)

@@ -28,6 +28,12 @@ public class AuthenticationController {
 
     @PostMapping("/login")
     public ResponseEntity<AuthResponse> login(@RequestBody AuthRequest request) {
+        System.out.println("=========================================");
+        System.out.println(">>> REQUISIÇÃO DE LOGIN RECEBIDA <<<");
+        System.out.println(">>> Email recebido: [" + request.email() + "]");
+        System.out.println(">>> Senha recebida: [" + request.password() + "]");
+        System.out.println("=========================================");
+        
         return ResponseEntity.ok(authService.authenticate(request));
     }
 }

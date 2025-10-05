@@ -1,84 +1,152 @@
 # 🌱 Serena: Ecossistema de Saúde Mental  
-**Smart HAS Full-stack (FIAP)**  
+### Smart HAS Full-stack (FIAP)
 
-Serena é uma solução full-stack de apoio à saúde mental, composta por:  
-- **API** (Java + Spring Boot)  
-- **App Mobile** (React Native)  
-- **Dashboard Web** (Angular)  
+**Serena** é uma solução *full-stack* de apoio à saúde mental, composta por:
 
-> 📹 [Vídeo demonstrativo no YouTube](https://youtu.be/_mJlrOdDJ7c)  
-> 💻 [Repositório oficial](https://github.com/eduardoicosta/smart-has-serena-fullstack)  
+- 🧠 **API (Java + Spring Boot)**
+- 📱 **App Mobile (React Native)**
+- 🖥️ **Dashboard Web (Angular)**
 
----
-
-## 🏛️ Estrutura do Monorepo  
-
-| Diretório             | Descrição | Tecnologias |
-|-----------------------|-----------|-------------|
-| `/serena-api`         | API REST com autenticação, persistência e documentação Swagger | Java 21, Spring Boot, Spring Security (JWT), Spring Data JPA, PostgreSQL |
-| `/smart-has-serena`   | Aplicativo mobile para usuários finais | React Native (Expo), TypeScript, React Navigation, Axios |
-| `/serena-dashboard`   | Painel administrativo web | Angular, TypeScript, Angular Router, HttpClient |
+🎥 **Vídeo demonstrativo:** [YouTube](https://youtu.be/_mJlrOdDJ7c)  
+📂 **Repositório oficial:** [github.com/eduardoicosta/smart-has-serena-fullstack](https://github.com/eduardoicosta/smart-has-serena-fullstack)
 
 ---
 
-## 💻 Tecnologias Utilizadas  
+## 🏛️ Estrutura do Monorepo
 
-- **Back-end**: Java 21, Spring Boot, Spring Security, PostgreSQL, Maven  
-- **Mobile**: React Native (Expo), TypeScript  
-- **Web**: Angular, TypeScript  
-- **Infra & Docs**: springdoc-openapi (Swagger UI), Git/GitHub  
+### `/serena-api`
+- **Descrição:** API REST com autenticação (JWT), persistência, lógica em PL/SQL e documentação Swagger  
+- **Tecnologias:** Java 21, Spring Boot, Spring Security (JWT), Spring Data JPA, Oracle Database (Docker), PL/SQL  
+
+### `/smart-has-serena`
+- **Descrição:** Aplicativo mobile para usuários finais, com integração Google Maps  
+- **Tecnologias:** React Native (Expo), TypeScript, React Navigation, Axios  
+
+### `/serena-dashboard`
+- **Descrição:** Painel administrativo web  
+- **Tecnologias:** Angular, TypeScript, Angular Router, HttpClient  
 
 ---
 
-## 🚀 Como Executar  
+## 💻 Tecnologias Utilizadas
 
-### Pré-requisitos  
-- Java JDK 21+  
+**Back-end:**  
+`Java 21`, `Spring Boot`, `Spring Security`, `Oracle Database (Docker)`, `PL/SQL`, `Maven`
+
+**Mobile:**  
+`React Native (Expo)`, `TypeScript`
+
+**Web:**  
+`Angular`, `TypeScript`
+
+**Infra & Docs:**  
+`Docker`, `springdoc-openapi (Swagger UI)`, `Git/GitHub`
+
+---
+
+## 🚀 Como Executar
+
+### 🔧 Pré-requisitos
+- Java **JDK 21+**  
 - Node.js e NPM  
-- Angular CLI (`npm install -g @angular/cli`)  
-- PostgreSQL rodando localmente  
-- Emulador ou dispositivo Android/iOS  
+- Angular CLI  
+  ```bash
+  npm install -g @angular/cli
+  ```
+- Docker Desktop (para executar o Oracle Database)  
+- Google Cloud API Key (para Google Maps e Geocoding)  
+- Celular Android (com depuração USB ativada) **ou** Emulador Android (Android Studio)
 
-### 1. API (`serena-api`)  
+---
+
+### 🗄️ Banco de Dados Oracle (via Docker)
+
+Antes de iniciar a API, suba o container do Oracle:
+
+```bash
+docker run -d --name oracle-serena -p 1521:1521 -e ORACLE_PASSWORD=minhasenha_oracle gvenzl/oracle-xe
+```
+
+Após subir o container, conecte-se ao **XEPDB1**  
+**Usuário:** `system`  
+**Senha:** `minhasenha_oracle`
+
+Em seguida, **execute o script SQL completo** do projeto para criar tabelas, sequences, functions e procedures.
+
+---
+
+### ⚙️ API (`serena-api`)
+
+Após o Oracle estar rodando:
+
 ```bash
 cd serena-api
 ./mvnw spring-boot:run
-# Servidor: http://localhost:8080
 ```
 
-### 2. Dashboard (`serena-dashboard`)  
+Servidor:  
+[http://SEU_IP_DA_MAQUINA:8080](http://SEU_IP_DA_MAQUINA:8080)  
+(exemplo: `http://192.168.1.4:8080`)
+
+📘 Documentação Swagger UI:  
+[http://SEU_IP_DA_MAQUINA:8080/swagger-ui.html](http://SEU_IP_DA_MAQUINA:8080/swagger-ui.html)
+
+---
+
+### 💻 Dashboard (`serena-dashboard`)
+
 ```bash
 cd serena-dashboard
 npm install
 ng serve
-# Acesse: http://localhost:4200
 ```
 
-### 3. Mobile (`smart-has-serena`)  
+Acesse:  
+👉 [http://localhost:4200](http://localhost:4200)
+
+---
+
+### 📱 Mobile (`smart-has-serena`)
+
+> ⚠️ **Importante:** Certifique-se de configurar corretamente o IP do seu computador em  
+> `src/services/api.js` (ex: `http://192.168.1.4:8080`).  
+> O celular e o computador **devem estar na mesma rede Wi-Fi**.
+
 ```bash
 cd smart-has-serena
 npm install
-npx expo run:android
+npx react-native run-android
 ```
 
 ---
 
-## 🗺️ Roadmap (Próximas Evoluções)  
-- ✅ Autenticação JWT  
-- ✅ Histórico de mensagens  
-- ✅ Dashboard administrativo  
-- 🔜 Chat com IA (LLM)  
-- 🔜 Notificações push (Expo)  
-- 🔜 Animações (react-native-reanimated)  
-- 🔜 Integração com ferramentas ManageEngine  
-- 🔜 Testes automatizados (Jest + React Native Testing Library)  
+## 🗺️ Roadmap (Próximas Evoluções)
+
+| Status | Funcionalidade |
+|:------:|----------------|
+| ✅ | Autenticação JWT |
+| ✅ | Histórico de mensagens |
+| ✅ | Dashboard administrativo |
+| ✅ | Migração para Oracle Database |
+| ✅ | Desenvolvimento de lógica em PL/SQL |
+| ✅ | Documentação interativa da API (Swagger UI) |
+| ✅ | Refatoração e padrões de código no Backend |
+| ✅ | Integração Google Maps API (Geocoding e Places) |
+| 🔜 | Chat com IA (LLM - Google Gemini) |
+| 🔜 | Notificações push (Expo) |
+| 🔜 | Animações (react-native-reanimated) |
+| 🔜 | Integração com ferramentas ManageEngine |
+| 🔜 | Testes automatizados (Jest + React Native Testing Library) |
 
 ---
 
-## 🤝 Contribuição  
-Este projeto foi desenvolvido como parte da atividade acadêmica da FIAP. Sugestões e melhorias são bem-vindas!  
+## 🤝 Contribuição
+
+Este projeto foi desenvolvido como parte da atividade acadêmica da **FIAP**.  
+Sugestões e melhorias são muito bem-vindas! 💡
 
 ---
 
-## 📄 Licença  
-Uso acadêmico e educacional.  
+## 📄 Licença
+
+Uso **acadêmico e educacional**.

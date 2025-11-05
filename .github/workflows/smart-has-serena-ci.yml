@@ -1,0 +1,40 @@
+name: CI Front-end - Smart HAS (React Native)
+
+on:
+  push:
+    branches: [ main ]
+    paths:
+      - 'smart-has-serena/**'
+  pull_request:
+    branches: [ main ]
+    paths:
+      - 'smart-has-serena/**'
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+
+    # 2.2. Configura o ambiente Node.js com a versão v22.19.0
+    - name: Set up Node.js v22.19.0
+      uses: actions/setup-node@v4
+      with:
+        # Define a versão específica do Node.js
+        node-version: '22.19.0'
+        
+        # Configura o cache do NPM
+        cache: 'npm'
+        cache-dependency-path: 'smart-has-serena/package-lock.json'
+
+    # 2.3. Instala as dependências
+    - name: Install Dependencies
+      run: npm install
+      working-directory: ./smart-has-serena
+
+    # 2.4. Roda os testes
+    - name: Run Tests
+      run: npm test -- --watchAll=false
+      working-directory: ./smart-has-serena

@@ -39,6 +39,7 @@ const ProfessionalsMapScreen = ({ navigation }) => {
     const radius = 5000;
     const searchKeyword = encodeURIComponent("psicólogo"); 
     
+    // atualizar api
     const placesUrl = `https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=${latitude},${longitude}&radius=${radius}&keyword=${searchKeyword}&key=${GOOGLE_MAPS_API_KEY}`;
     
     try {

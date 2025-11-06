@@ -36,5 +36,7 @@ jobs:
 
     # 2.4. Roda os testes
     - name: Run Tests
-      run: npm test -- --watchAll=false
+      # Chamamos o executável do jest diretamente de dentro do node_modules
+      # Isso é mais confiável que 'npm test' ou 'npx' no CI
+      run: ./node_modules/.bin/jest --watchAll=false
       working-directory: ./smart-has-serena

@@ -16,7 +16,7 @@
 
 ### `/serena-api`
 - **Descrição:** API REST com autenticação (JWT), persistência, lógica em PL/SQL e documentação Swagger  
-- **Tecnologias:** Java 21, Spring Boot, Spring Security (JWT), Spring Data JPA, Oracle Database (Docker), PL/SQL  
+- **Tecnologias:** Java 21, Spring Boot, Spring Security (JWT), Spring Data JPA, Oracle Database (Docker), PL/SQL, Gemini API 
 
 ### `/smart-has-serena`
 - **Descrição:** Aplicativo mobile para usuários finais, com integração Google Maps  
@@ -31,7 +31,7 @@
 ## 💻 Tecnologias Utilizadas
 
 **Back-end:**  
-`Java 21`, `Spring Boot`, `Spring Security`, `Oracle Database (Docker)`, `PL/SQL`, `Maven`
+`Java 21`, `Spring Boot`, `Spring Security`, `Oracle Database (Docker)`, `PL/SQL`, `Maven`, `Gemini API`
 
 **Mobile:**  
 `React Native (Expo)`, `TypeScript`
@@ -132,11 +132,11 @@ npx react-native run-android
 | ✅ | Documentação interativa da API (Swagger UI) |
 | ✅ | Refatoração e padrões de código no Backend |
 | ✅ | Integração Google Maps API (Geocoding e Places) |
-| 🔜 | Chat com IA (LLM - Google Gemini) |
+| ✅ | Chat com IA (LLM - Google Gemini) |
 | 🔜 | Notificações push (Expo) |
 | 🔜 | Animações (react-native-reanimated) |
-| 🔜 | Integração com ferramentas ManageEngine |
-| 🔜 | Testes automatizados (Jest + React Native Testing Library) |
+| ✅ | Integração com ferramentas ManageEngine |
+| ✅ | Testes automatizados (Jest + React Native Testing Library) |
 
 ---
 
